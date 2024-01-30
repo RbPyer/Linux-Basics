@@ -311,10 +311,12 @@ DHCP-сервер также может назначать другие пара
 
 
 - Для выхода с сохранением необходимо нажать ```F10``` и выбрать ```no```:
+
 [part_7_14](screenshots/part_7_14.png)
 [part_7_15](screenshots/part_7_15.png)
 
 - Поиск: ```F7```; Замена: ```F4```
+
 [part_7_16](screenshots/part_7_16.png)
 [part_7_17](screenshots/part_7_17.png)
 [part_7_18](screenshots/part_7_18.png)
