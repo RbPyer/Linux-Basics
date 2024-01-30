@@ -251,3 +251,75 @@ DHCP-сервер также может назначать другие пара
 - выполним изменение hostname на любое (в данном случае ```user-2```), после чего пропишем ```reboot```:
 
 ![part_5_3](screenshots/part_5_3.png)
+
+
+## Part 6. Установка и настройка службы времени
+
+![part_6](screenshots/part_6.png)
+
+
+## Part 7. Установка и использование текстовых редакторов
+
+- Для установки текстовых редакторов выполним команду ```sudo apt install vim && sudo apt install nano && sudo apt install mcedit```
+
+
+### Для vim:
+
+- ```vim test_vim.txt```. Чтобы внести изменения - ```I```, чтобы сохранить изменения - ```esc -> shift + : -> wq```. ```wq``` - write and quite.
+
+![part_7_1](screenshots/part_7_1.png)
+
+
+- для выхода без изменений - ```esc -> shift + : -> q!```. Проверим, что изменения не сохранились:
+
+![part_7_2](screenshots/part_7_2.png)
+![part_7_3](screenshots/part_7_3.png)
+
+- Поиск: ```Esc + /<word_to_search>```; Замена: ```:%s/<change_this>/<to_this>```:
+
+![part_7_4](screenshots/part_7_4.png)
+![part_7_5](screenshots/part_7_5.png)
+
+
+### Для nano:
+
+- Для выхода с сохранением нужно выполнить ```Ctrl + O```, затем ```Ctrl + X```:
+
+![part_7_6](screenshots/part_7_6.png)
+
+- Для выхода без сохранения нужно нажать ```Esc```, затем ```Ctrl + X```:
+
+![part_7_7](screenshots/part_7_7.png)
+![part_7_8](screenshots/part_7_8.png)
+
+- Поиск: ```Ctrl + W``` 
+
+![part_7_9](screenshots/part_7_9.png)
+
+- Замена: ```Ctrl + \```
+
+![part_7_10](screenshots/part_7_10.png)
+![part_7_11](screenshots/part_7_11.png)
+![part_7_12](screenshots/part_7_12.png)
+
+
+### MCEdit
+
+
+- Для выхода с сохранением необходимо нажать ```F10``` и выбрать ```yes```:
+[part_7_13](screenshots/part_7_13.png)
+
+
+- Для выхода с сохранением необходимо нажать ```F10``` и выбрать ```no```:
+[part_7_14](screenshots/part_7_14.png)
+[part_7_15](screenshots/part_7_15.png)
+
+- Поиск: ```F7```; Замена: ```F4```
+[part_7_16](screenshots/part_7_16.png)
+[part_7_17](screenshots/part_7_17.png)
+[part_7_18](screenshots/part_7_18.png)
+[part_7_19](screenshots/part_7_19.png)
+
+
+## Part 8. Установка и базовая настройка сервиса SSHD
+
