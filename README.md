@@ -1,348 +1,890 @@
-# UNIX/Linux operating systems (Basic).
+# Базовая работа на OC Linux (Ubuntu Server 23.10) by Oswyndel (school-21)
 
-Linux system installation and updates. Administration basics.
 
-The russian version of the task can be found in the repository.
 
-## Contents
+## Содержание:
 
-1. [Chapter I](#chapter-i)
-2. [Chapter II](#chapter-ii) \
-   2.1. [Linux](#linux)  
-   2.2. [Administration](#administration)  
-   2.3. [Virtual machines](#virtual-machines)
-3. [Chapter III](#chapter-iii) \
-   3.1 [Installation of the OS](#part-1-installation-of-the-os)  
-   3.2 [Creating a user](#part-2-creating-a-user)  
-   3.3 [Setting up the OS network](#part-3-setting-up-the-os-network)   
-   3.4 [OS Update](#part-4-os-update)  
-   3.5 [Using the sudo command](#part-5-using-the-sudo-command)  
-   3.6 [Installing and configuring the time service](#part-6-installing-and-configuring-the-time-service)  
-   3.7 [Installing and using text editors](#part-7-installing-and-using-text-editors)  
-   3.8 [Installing and basic setup of SSHD service](#part-8-installing-and-basic-setup-of-the-sshd-service)  
-   3.9 [Installing and using the top, htop utilities](#part-9-installing-and-using-the-top-htop-utilities)   
-   3.10 [Using the fdisk utility](#part-10-using-the-fdisk-utility)   
-   3.11 [Using the df utility](#part-11-using-the-df-utility)    
-   3.12 [Using the du utility](#part-12-using-the-du-utility)    
-   3.13 [Installing and using the ncdu utility](#part-13-installing-and-using-the-ncdu-utility)    
-   3.14 [Working with system logs](#part-14-working-with-system-logs)     
-   3.15 [Using the CRON job scheduler](#part-15-using-the-cron-job-scheduler)
+1. [Установка ОС](#part-1-установка-ос)  
+2. [Создание пользователя](#part-2-создание-пользователя)  
+3. [Настройка сети ОС](#part-3-настройка-сети-ос)   
+4. [Обновление ОС](#part-4-обновление-ос)  
+5. [Использование команды  sudo](#part-5-использование-команды-sudo)  
+6. [Установка и настройка службы времени](#part-6-установка-и-настройка-службы-времени)  
+7. [Установка и использование текстовых редакторов](#part-7-установка-и-использование-текстовых-редакторов)  
+8. [Установка и базовая настройка сервиса SSHD](#part-8-установка-и-базовая-настройка-сервиса-sshd)   
+9. [Установка и использование утилит top, htop](#part-9-установка-и-использование-утилит-top-htop)   
+10. [Использование утилиты fdisk](#part-10-использование-утилиты-fdisk)   
+11. [Использование утилиты df](#part-11-использование-утилиты-df)    
+12. [Использование утилиты du](#part-12-использование-утилиты-du)    
+13. [Установка и использование утилиты ncdu](#part-13-установка-и-использование-утилиты-ncdu)    
+14. [Работа с системными журналами](#part-14-работа-с-системными-журналами)     
+15. [Использование планировщика заданий CRON](#part-15-использование-планировщика-заданий-cron)   
 
+P.S. в директории /materials находятся дополнительные сводки по каждому заданию
 
-## Chapter I
 
-![linux](misc/images/linux.png)
 
->Developer’s note: \
->For full immersion, you can play your favorite jazz song while reading the assignment.
 
-Planet Earth, Seb's Jazz Club, today.
+## Part 1. Установка ОС
 
-"Well, Sebastian, you didn't expect me to believe that you called me just to sit and relax, did you? You're not the type to write to an old comrade in the middle of the working week when you have nothing to say."
+ ---
 
-"Nothing can ever be kept from you! I thought I'd get to the point, but since you're so sharp..."
+**== Задание ==**
 
-"Stop flattering me, I'm just wondering why we're here."
+##### Установи **Ubuntu 20.04 Server LTS** без графического интерфейса. (Используем программу для виртуализации - VirtualBox)
 
-"The thing is, I recently joined a development company that needed an administrator. But there is problem: they use Linux as their operating system."
+- Графический интерфейс должен отсутствовать.
 
-"And you, as a confident Windows user, want to understand the basics of Linux and also the administration?"
+- Узнай версию Ubuntu, выполнив команду \
+`cat /etc/issue.`
+- Вставь скриншот с выводом команды.
 
-"Exactly! As far as I remember, you're good at both."
+ ---
 
-"Well, then, get your laptop! Obviously I haven't done this for a while, but I'll try to help. The main thing is to finish before the club closes, otherwise we'll have to continue tomorrow."
+Скачать iso-образ Ubuntu Server можно на их официальном сайте [официальном сайте](https://ubuntu.com/download/server).
 
-\> *The song ends, the music slowly fades, they bring you the drinks you ordered.*
 
-\> *While Sebastian takes his laptop out and turns it on, you decide to share a little historical background.*
+- скриншот вывода ```cat /etc/issue```
 
+![part1](screenshots/part1.png)
 
-## Chapter II
 
-### Linux
+## Part 2. Создание пользователя
 
-"The history of Linux dates back to 1991, when a Finnish graduate programmer named Linus Torvalds began working on his own operating system kernel.
+---
 
-He put his work on a public server and it became a milestone in the history of Linux. First dozens, then hundreds and thousands of developers supported his project, and that's how a complete operating system was born.
+**== Задание ==**
 
-The first official version, Linux 1.0, was released in 1994. From the beginning to the present day, Linux has been distributed as free software under the GPL licence. This means that the source code of the operating system can be viewed by anyone - and not just viewed, but modified. The only condition is that the modified code must also be available to everyone and distributed under the GPL. This is important because it allows developers to use the code without worrying about copyright issues.
+##### Создай пользователя, отличного от созданного при установке. Пользователь должен быть добавлен в группу `adm`.
 
-Today, Linux is the most popular and widely used open source operating system. As an operating system, Linux is software that sits below other software on a computer, receiving requests from those programs and passing those requests on to the computer's hardware."
+- Вставь скриншот вызова команды для создания пользователя.
+- Новый пользователь должен быть в выводе команды \
+`cat /etc/passwd`
+- Вставь скриншот с выводом команды.
 
-\> *The waitress brings you the drinks you ordered, the musicians start playing again.*
+---
 
-### Administration
 
-"Administration, without going into too much detail, is the support and improvement of all computer and office equipment, peripherals, network connectivity, etc. When administering Linux, most of the work is done in the terminal, so it's better to start with the basic utilities."
+- скриншот вызова команды для создания пользователя. Для этого используем команду ```sudo adduser <new_user>```.
+ После этого добавляем его в группу adm (нахождение в этой группе позволяет читать логи из директории ```/var/log```):
+ ```
+ sudo usermod -G -a <group> <user>
+ ```
 
-\> *At this point Sebastian's laptop boots up and you see a horrible picture: it doesn't even have the right operating system...*
+![part_2_1](screenshots/part2_1.png)
+![part_2_1_1](screenshots/part_2_1_1.png)
 
-\> *Instead of reinstalling Sebastian's operating system, you decide to use a virtual machine.*
+P.S.
+Полезные флаги для usergmod:
 
-### Virtual machines
+- ```-G``` - дополнительные группы, в которые нужно добавить пользователя
+- ```-g``` изменить основную группу для пользователя
+- ```-R``` удалить пользователя из группы.
+-----
 
-"A virtual machine (VM) is just like a physical computer, it has a CPU, memory, disks for storing files, and can connect to the Internet if necessary. The only difference is that the components of your computer (the hardware) are tangible, while virtual machines exist only as code.
+- скриншот вывода ```cat /etc/passwd```
 
-To put it simply, it's a virtual computer on which you can install an operating system and all the associated software, with no changes to your main operating system.
+![part_2_2](screenshots/part2_2.png)
 
-Virtualisation is the process of creating a software (virtual) version of a computer with dedicated CPU, memory and storage resources that are 'borrowed' from a physical computer. A virtual machine is a computer file (image) that works like a normal computer.
 
-_VirtualBox_ is a virtualisation software product, i.e. a tool for creating virtual machines."
+## Part 3. Настройка сети ОС
 
-\> *You wanted to share some more useful information later, so you created a materials folder on Sebastian's laptop with useful information.*
 
+---
+**== Задание ==**
 
-## Chapter III
+##### Задай название машины вида user-1.
+##### Установи временную зону, соответствующую твоему текущему местоположению.  
+##### Выведи названия сетевых интерфейсов с помощью консольной команды.
+- В отчёте дай объяснение наличию интерфейса lo.  
+##### Используя консольную команду, получи ip адрес устройства, на котором ты работаешь, от DHCP сервера. 
+- В отчёте дай расшифровку DHCP.  
+##### Определи и выведи на экран внешний ip-адрес шлюза (ip) и внутренний IP-адрес шлюза, он же ip-адрес по умолчанию (gw). 
+##### Задай статичные (заданные вручную, а не полученные от DHCP сервера) настройки ip, gw, dns (используй публичный DNS серверы, например 1.1.1.1 или 8.8.8.8).  
+##### Перезагрузи виртуальную машину. Убедись, что статичные сетевые настройки (ip, gw, dns) соответствуют заданным в предыдущем пункте.  
 
-As a result of the work you should provide a report with completed tasks. Each part of the task describe what should be added to the report once it has been completed. This can be screenshots, some data, etc.
+- В отчёте опиши, что сделал для выполнения всех семи пунктов (можно как текстом, так и скриншотами).
+- Успешно пропингуй удаленные хосты 1.1.1.1 и ya.ru и вставь в отчёт скрин с выводом команды. В выводе команды должна быть фраза «0% packet loss».
 
-- A report with a .md extension must be uploaded to the repository, in the src folder;
-- All parts of the task should be highlighted in the report as level 2 headers;
-- Within one part of the task, everything that is added to the report must be in the form of the list;
-- Each screenshot in the report must be briefly captioned (what’s in the screenshot);
-- All screenshots must be cropped so that only the relevant part of the screen is shown.
+---
 
-## Part 1. Installation of the OS
 
-"Well, let's finally get this Linux installed, Sebastian moves the laptop closer to you."
 
-"Yes, it's about time. I saw a great instruction on *Linuxconfig* to install the version we need."
+- задаём название машины вида user-1. Для этого используем команду:
+ ```sudo hostnamectl set-hostname <new host_name>```
 
-**== Task ==**
+![part_3_1_1](screenshots/part_3_1_1.png)
 
-##### Install **Ubuntu 20.04 Server LTS** without GUI. (Use VirtualBox).
-- There should be no GUI.
-- Check Ubuntu version by running the command \
-  `cat /etc/issue`
-- Add a screenshot of the command output to the report.
+После перезагрузки изменения вступили в силу.
 
-## Part 2. Creating a user
+![part_3_1_2](screenshots/part_3_1_2.png)
 
-"An installed system is a good thing, but what if someone else uses it? I'll teach you how to create a new user."
+- в ```systemd``` есть своя утилита для настройки даты и часового пояса - ```timedatectl```. 
+Узнать текущий часовой пояс машины можно, выполнив команду ```timedatectl status```:
 
-**== Task ==**
+![part_3_2_1](screenshots/part_3_2_1.png)
 
-##### Create a user other than the one created during installation. The user must be added to `adm` group.
-- Add a screenshot of command call to create user.
-- The new user must be in the output of the command: \
-  `cat /etc/passwd`
-- Add a screenshot of the command output.
+- для просмотра всех имеющихся часовых зон мы можем выполнить команду ```timedatectl list-timezones```:
 
-## Part 3. Setting up the OS network
+![part_3_2_2](screenshots/part_3_2_2.png)
 
-"In our world, you can't go far without the Internet. However, since we want to train you for the role of a system administrator, I'll show you a little more than just setting up a network."
 
-"Before we begin, I suggest reading about network interfaces and DHCP."
+- для изменения текущей часовой зоны выполним команду вида ```sudo timedatectl set-timezone <zone>```. После выполнения вновь выведем текущую часовую зону и увидим, что она действительно изменилась:
 
-**== Task ==**
+![part_3_2_2](screenshots/part_3_2_3.png)
 
-##### Set the machine name as user-1
-##### Set the time zone corresponding to your current location.
+----
 
-##### Output the names of the network interfaces using a console command.
-- In the report give an explanation for the presence of the lo interface.
-##### Use the console command to get the ip address of the device you are working on from the DHCP server.
-- Decode DHCP in the report.
-##### Define and display the external ip address of the gateway (ip) and the internal IP address of the gateway, aka default ip address (gw).
-##### Set static (manually set, not received from DHCP server) ip, gw, dns settings (use public DNS servers, e.g. 1.1.1.1 or 8.8.8.8).
+### Справка о сетевых интерфейсах
 
-##### Reboot the virtual machine. Make sure that the static network settings (ip, gw, dns) correspond to those set in the previous point.
-- Describe in the report what you have done to complete all seven points (you can do it in text or with screenshots);
-- Successfully ping 1.1.1.1 and ya.ru remote hosts and add a screenshot of the output command to the report. There should be "0% packet loss" phrase in command output.
+**Сетевой интерфейс** - это точка взаимодействия между компьютером и сетью. Он представляет собой аппаратное или программное обеспечение, которое позволяет компьютеру подключаться к сети и обмениваться данными с другими устройствами.
 
-## Part 4. OS Update
+Если говорить простыми словами, то сетевой интерфейс - это как дверь, через которую компьютер "выходит" в интернет или другую сеть. Без этой "двери" компьютер не сможет общаться с другими устройствами.
 
-"You're probably wondering, 'Is the system ready now?' It's not ready at all! We haven't updated it to the latest version yet."
+Сетевой интерфейс может быть физическим, например, сетевая карта в компьютере или Wi-Fi адаптер. Он также может быть программным, например, виртуальная сетевая карта в виртуальной машине или программное обеспечение, которое позволяет компьютеру подключаться к сети.
 
-**== Task ==**
 
-##### Update the system packages to the latest version
-- After updating the system packages, if you enter the update command again, a message should appear saying there are no updates;
-- Add a screenshot of this message to the report.
+----
 
-## Part 5. Using the **sudo** command
 
-"How often were you told as a child that you forgot to say the 'magic' word? One of those 'magic' words was 'please'. Linux has its counterpart – _sudo_. The system won't perform some operations until it hears the 'magic' word."
+- чтобы вывести названия всех сетевых интерфейсов, используем встроенную утилиту ```ip```. Для компактного вывода информации о списке всех сетевых интерфейсов используем команду ```ip -br link show```:
 
-**== Task ==**
+![part_3_3_1](screenshots/part_3_3_1.png)
 
-##### Allow user created in [Part 2](#part-2-creating-a-user) to execute sudo command.
-- In the report explain the *true* purpose of sudo command (don’t write about the fact that this word is "magic" one);
-- Change the OS hostname via the user created in [Part 2](#part-2-creating-a-user) (using sudo);
-- Add screenshot with changed hostname to the report.
+Мы видим, что один из сетевых интерфейсов - lo. Что это?
 
-## Part 6. Installing and configuring the time service
 
-"Although we have the correct time now, it may not always be that way. To avoid having to set it every time yourself, there are time sync services."
+----
+### Справка о lo
 
-**== Task ==**
+**Интерфейс lo (loopback)** - это виртуальный сетевой интерфейс, который присутствует на большинстве операционных систем. Он используется для тестирования сетевых приложений и сервисов, а также для обеспечения доступа к локальной машине из сети.
 
-##### Set up the automatic time synchronisation service.
-- Output the time of the time zone in which you are currently located.
-- The output of the following command must contain `NTPSynchronized=yes`: \
+Если говорить простыми словами, то интерфейс lo - это как зеркало, которое позволяет компьютеру "увидеть" самого себя. Он позволяет отправлять и получать пакеты данных, которые не покидают компьютер.
+
+Например, если вы хотите проверить, работает ли ваш веб-сервер, вы можете отправить запрос на адрес 127.0.0.1 (это стандартный IP-адрес для интерфейса lo), и ваш компьютер ответит на этот запрос.
+
+Также интерфейс lo используется для обеспечения доступа к локальной машине из сети. Например, если вы хотите получить доступ к файлам на вашем компьютере из интернета, вы можете настроить перенаправление портов на интерфейс lo.
+
+
+----
+
+### Справка о DHCP
+**DHCP (Dynamic Host Configuration Protocol)** - это протокол, который позволяет автоматически назначать IP-адреса устройствам в сети. 
+
+Если говорить простыми словами, то DHCP - это как почтальон, который разносит письма (IP-адреса) по домам (компьютерам). 
+
+Когда компьютер подключается к сети, он отправляет запрос на DHCP-сервер, который назначает ему IP-адрес. Этот адрес может быть временным или постоянным, в зависимости от настроек сервера. 
+
+DHCP-сервер также может назначать другие параметры, такие как маска подсети, адрес шлюза и DNS-серверы. Это позволяет компьютерам в сети общаться друг с другом и получать доступ к интернету.
+
+Таким образом, DHCP упрощает процесс настройки сети, так как не нужно вручную назначать IP-адреса каждому устройству.
+
+----
+
+
+- чтобы узнать ip-адрес устройства, полученный от DHCP-сервера, выполним команду ```cat /var/log/syslog | grep -i 'dhcp'```:
+
+
+![part_3_4](screenshots/part_3_4.png)
+
+
+Мы видим, что нашему устройству был присвоен адрес ```10.0.2.15/24```.
+
+Также его можно узнать и чуть проще, выполнив команду ```ip addr show```:
+
+![part_3_4_1](screenshots/part_3_4_1.png)
+
+
+
+- Для того чтобы узнать внешний IP адрес cвоего устройства, можно открыть специальный сайт, который посмотрит, с какого IP Вы его открыли, и скажет его Вам. Один из таких сайтов - ifconfig.me. Обратимся к нему с помощью ```curl ifconfig.co``` и получим желаемый внешний ip-адрес:
+
+
+![part_3_5](screenshots/part_3_5.png)
+
+
+- чтобы узнать внутренний ip-адоес, выполним команду ```hostname -I```:
+
+![part_3_5_1](screenshots/part_3_5_1.png)
+
+
+----
+
+В чём разница между внутренним и внешним ip-адресами?
+
+**Внешний IP-адрес** - это адрес, который присваивается вашему устройству или сети провайдером интернет-услуг. Он позволяет другим устройствам в интернете находить и общаться с вашим устройством.
+
+**Внутренний IP-адрес** - это адрес, который присваивается вашему устройству или сети внутри вашей локальной сети. Он используется только для обмена данными между устройствами в вашей сети.
+
+Если говорить простыми словами, то внешний IP-адрес - это как ваш домашний адрес, который знают все в городе, а внутренний IP-адрес - это как номер вашей квартиры, который знают только ваши соседи.
+
+----
+
+
+- Попробуем задать статичные настройки ip, gw (gateway), DNS.
+
+Что такое gw в данном контексте?
+
+----
+### Справка о Gateway
+
+
+**Gateway в рамках компьютерных сетей** - это аппаратное или программное обеспечение, которое позволяет сопрягать разные компьютерные сети, использующие разные протоколы. Он конвертирует протоколы одного типа физической среды в протоколы другой физической среды. Например, при подключении компьютера к интернету обычно используется сетевой шлюз. Маршрутизатор (роутер) является одним из примеров аппаратных сетевых шлюзов. Основная задача сетевого шлюза - конвертировать протокол между сетями. Шлюз по умолчанию - это сетевой шлюз, на который пакет отправляется в том случае, если маршрут к сети назначения пакета не известен. Он применяется в сетях с хорошо выраженными центральными маршрутизаторами, в малых сетях, в клиентских сегментах сетей.‍
+
+----
+
+
+- Протокол DHCP автоматически присваивает устройству IP. Чтобы этого не происходило, необходимо отключить облачную инициализацию. Открываем файл конфигурации ```subiquity-disable-cloudinit-networking.cfg``` в каталоге ```/etc/cloud/cloud.cfg.d/``` и проверим отсутствие конфигурации:
+
+  ```sudo vim /etc/cloud/cloud.cfg.d/subiquity-disable-cloudinit-networking.cfg```
+
+
+![part_3_5_2](screenshots/part_3_5_2.png)
+
+
+- Перейдём к конфигурации Netplan. **Netplan** - это относительно новая утилита для осуществления настройки сети в Ubuntu. Более подробно о ней можно прочитать [тут](https://habr.com/ru/articles/448400/ "статья на хабре"). В данном случае файл конфигурации - это ```oo-installer-config.yaml```. Откроем его в текстовом редакторе ```vim```:
+
+```sudo vim /etc/netplan/00-installer-config.yaml```
+
+![part_3_5_3](screenshots/part_3_5_3.png)
+
+- Пропишем новые настройки для нашего конфигурационного файла *
+
+![part_3_5_4](screenshots/part_3_5_4.png)
+
+
+*, **где**:
+
+- **version** — версия YAML. На момент обновления статьи, была 2.
+- **ethernets** — настройка сетевых адаптеров ethernet.
+- **ens3** — настройки для соответствующих сетевых адаптеров
+- **dhcp4** — будет ли получать сетевой адаптер IP-адрес автоматически. Возможны варианты yes/true — получать адрес автоматически; no/false — адрес должен быть назначен вручную.
+- **addresses** — задает IP-адреса через запятую.
+- **routes** — настройка маршрутов. Для шлюза по умолчанию используем опцию и значение to: default. Ранее использовалась директива gateway4, но теперь она считается устаревшей (при применении настройки с ней система вернет предупреждение gateway4 has been deprecated, use default routes instead). Также обратите внимание на вариант с 0.0.0.0 — в более ранних версиях системы вариат с default выдаст ошибку, и нужно использовать конфигурацию с четыремя нулями.
+- **nameservers** — настройка серверов имен (DNS).
+
+
+- Затем сохраняем изменения с помощью команды ```netplan apply``` и перезагружаемся командой ```reboot```:
+
+
+![part_3_5_5](screenshots/part_3_5_5.png)
+
+
+- Проверяем полученные изменения командой ```cat /etc/netplan/00-installer-config.yaml```:
+
+![part_3_5_6](screenshots/part_3_5_6.png)
+
+
+-Успешно пингуем удаленные хосты 1.1.1.1 и ya.ru командами ```ping 1.1.1.1``` и ```ping ya.ru```:
+
+![part_3_5_7](screenshots/part_3_5_7.png)
+
+
+----
+
+### Справка о ping
+
+
+**ping** — утилита для проверки целостности и качества соединений в сетях. Утилита отправляет запросы указанному узлу сети и фиксирует поступающие ответы. Время между отправкой запроса и получением ответа позволяет определять двусторонние задержки по маршруту и частоту потери пакетов, то есть косвенно определять загруженность на каналах передачи данных и промежуточных устройствах.
+
+
+----
+
+
+## Part 4. Обновление ОС
+
+
+---
+
+**== Задание ==**
+
+##### Обнови системные пакеты до последней на момент выполнения задания версии.  
+
+- После обновления системных пакетов, если ввести команду обновления повторно, должно появиться сообщение, что обновления отсутствуют;
+- Вставь скриншот с этим сообщением в отчёт.
+
+---
+
+
+- пакетный менеджер в дистрибутиве Ubuntu, как известно, - ```apt```. Для обновления всех пакетов, а также обновления информации из самого apt репозитория пропишем команду ```sudo apt update && sudo apt upgrade```:
+
+
+![part_4_1](screenshots/part_4_1.png)
+
+- после обновления продублируем команду выше и увидим отсутствие новых обновлений:
+
+![part_4_2](screenshots/part_4_2.png)
+
+
+
+## Part 5. Использование sudo
+
+---
+
+*== Задание ==**
+
+##### Разреши пользователю, созданному в [Part 2](#part-2-создание-пользователя),выполнять команду sudo.
+
+- В отчёте объясни *истинное* назначение команды sudo (про то, что это слово - «волшебное», писать не стоит);  
+- Поменяй hostname ОС от имени пользователя, созданного в пункте [Part 2](#part-2-создание-пользователя) (используя sudo);
+- Вставь скрин с изменённым hostname в отчёт.
+
+---
+
+
+
+----
+
+### Справка о sudo
+
+
+**Команда sudo** - substitute user and do, подменить пользователя и выполнить. Главное назначение sudo — это выполнить команду от имени другого пользователя, чаще всего от root. Смысл выполнения команды от root в том, что у него повышенные права доступа и, применяя sudo, обычный пользователь может выполнить те команды, на которые у него недостаточно прав доступа.
+
+----
+
+- проверим, что у пользователя ```alex```, созданного в Part 2, отсутствуют права sudo. Для этого напишем команду ```sudo -l -U alex```:
+
+![part_5_1](screenshots/part_5_1.png)
+
+- затем наделим ```alex``` правами sudo и сменим пользователя на alex с помощью команд ```sudo usermod -aG sudo alex``` и ```su alex```:
+
+![part_5_2](screenshots/part_5_2.png)
+
+
+- выполним изменение hostname на любое (в данном случае ```user-2```), после чего пропишем ```reboot```:
+
+![part_5_3](screenshots/part_5_3.png)
+
+
+## Part 6. Установка и настройка службы времени
+
+---
+
+**== Задание ==**
+
+##### Настрой службу автоматической синхронизации времени.  
+
+- Выведи время часового пояса, в котором ты сейчас находишься.
+- Вывод следующей команды должен содержать `NTPSynchronized=yes`: \
   `timedatectl show`
-- Add screenshots of the correct time and command output to the report.
+- Вставь скрины с корректным временем и выводом команды в отчёт.
 
-## Part 7. Installing and using text editors
+---
 
-"I think we're ready to move on to one of the scariest parts."
+![part_6](screenshots/part_6.png)
 
-You’re pointing toward the Netherlands on the map of the world hanging on the wall.
 
-"Here, Bram Moolenaar has unraveled the mysteries of harmony and inner concentration. \
-This is where the first version of VIM was released on 2 November 1991. \
-Do you want to learn how to work in VIM?"
+## Part 7. Установка и использование текстовых редакторов
 
-"Yes..."
+_`-` Только не плачь._
 
-"Then I am your master."
+_`-` Ладно..._
 
-"OK..."
 
-"Just don't cry."
+---
 
-"I won’t..."
+**== Задание ==**
 
-**== Task ==**
+##### Установи текстовые редакторы **VIM** (+ любые два по желанию **NANO**, **MCEDIT**, **JOE** и т.д.)  
+##### Используя каждый из трех выбранных редакторов, создай файл *test_X.txt*, где X -- название редактора, в котором создан файл. Напиши в нём свой никнейм, закрой файл с сохранением изменений.  
+- В отчёт вставь скриншоты:
+  - Из каждого редактора с содержимым файла перед закрытием;
+- В отчёте укажи, что сделал для выхода с сохранением изменений.
+##### Используя каждый из трех выбранных редакторов, открой файл на редактирование, отредактируй файл, заменив никнейм на строку «21 School 21», закрой файл без сохранения изменений.
+- В отчёт вставь скриншоты:
+    - Из каждого редактора с содержимым файла после редактирования;
+- В отчёте укажи, что сделал для выхода без сохранения изменений.
+##### Используя каждый из трех выбранных редакторов, отредактируй файл ещё раз (по аналогии с предыдущим пунктом), а затем освой функции поиска по содержимому файла (слово) и замены слова на любое другое.
+- В отчёт вставь скриншоты:
+    - Из каждого редактора с результатами поиска слова;
+    - Из каждого редактора с командами, введёнными для замены слова на другое.
 
-##### Install **VIM** text editor (+ any two others if you like **NANO**, **MCEDIT**, **JOE** etc.)
+---
 
-##### Using each of the three selected editors, create a *test_X.txt* file, where X is the name of the editor in which the file is created. Write your nickname in it, close the file and save the changes.
-- Add screenshots to the report:
-    - Of each editor with the contents of the file before closing;
-- Write down in the report what you have done to exit with the changes saved.
 
-##### Using each of the three selected editors, open the file for editing, edit the file by replacing the nickname with the "21 School 21" string, close the file without saving the changes.
-- Add screenshots to the report:
-    - Of each editor with the contents of the file after editing;
-- Write down in the report what you have done to exit without saving the changes.
-##### Using each of the three selected editors, edit the file again (similar to the previous point) and then master the functions of searching through the contents of a file (a word) and replacing a word with any other one.
-- Add screenshots to the report:
-    - Of each editor with word search results;
-    - Of each editor with commands entered to replace a word with another.
+- Для установки текстовых редакторов выполним команду ```sudo apt install vim && sudo apt install nano && sudo apt install mcedit```
 
-## Part 8. Installing and basic setup of the **SSHD** service
 
-"It's convenient to have access from one computer to another over a network, isn't it? But to make it not only convenient, but also safe, you should use SSH service."
+### Для vim:
 
-**== Task ==**
+- ```vim test_vim.txt```. Чтобы внести изменения - ```I```, чтобы сохранить изменения - ```esc -> shift + : -> wq```. ```wq``` - write and quite.
 
-##### Install the SSHd service.
-##### Add an auto-start of the service whenever the system boots.
-##### Reset the SSHd service to port 2022.
-##### Show the presence of the sshd process using the ps command. To do this, you need to match the keys to the command.
-- Explain in the report the meaning of the command and each key in it.
-##### Reboot the system.
-- Describe in the report what you have done to complete all five points (you can do this in text or with screenshots);
-- The output of the netstat -tan command should contain \
-  `tcp 0 0.0.0.0:2022 0.0.0.0:* LISTEN` \
-  (if there is no netstat command, it needs to be installed);
-- Add a screenshot of the command output to the report;
-- Explain the meaning of the -tan keys, the value of each output column, the value 0.0.0.0. in the report.
+![part_7_1](screenshots/part_7_1.png)
 
-## Part 9. Installing and using the **top**, **htop** utilities
 
-"If I were asked what useful things **top** and **htop** utilities do, I would answer in one word: everything."
+- для выхода без изменений - ```esc -> shift + : -> q!```. Проверим, что изменения не сохранились:
 
-**== Task ==**
+![part_7_2](screenshots/part_7_2.png)
+![part_7_3](screenshots/part_7_3.png)
 
-##### Install and run the top and htop utilities.
-- From the output of the top command determine and write in the report:
-    - uptime
-    - number of authorised users
-    - total system load
-    - total number of processes
-    - cpu load
-    - memory load
-    - pid of the process with the highest memory usage
-    - pid of the process taking the most CPU time
-- Add a screenshot of the htop command output to the report:
-    - sorted by PID, PERCENT_CPU, PERCENT_MEM, TIME
-    - filtered for sshd process
-    - with the syslog process found by searching
-    - with hostname, clock and uptime output added
+- Поиск: ```Esc + /<word_to_search>```; Замена: ```:%s/<change_this>/<to_this>```:
 
-## Part 10. Using the **fdisk** utility
+![part_7_4](screenshots/part_7_4.png)
+![part_7_5](screenshots/part_7_5.png)
 
-"Now let's figure out how to get information about your hard disk. Especially for you I've put together a couple of examples of how to use the fdisk utility."
 
-**== Task ==**
+### Для nano:
 
-##### Run the fdisk -l command.
-- In the report write the name of the hard disk, its capacity and number of sectors, and also the swap size.
+- Для выхода с сохранением нужно выполнить ```Ctrl + O```, затем ```Ctrl + X```:
 
-## Part 11. Using the **df** utility
+![part_7_6](screenshots/part_7_6.png)
 
-"We got the information about the hard disk, but often it is much more interesting to get information about the disk space, which can be obtained with the df utility."
+- Для выхода без сохранения нужно нажать ```Esc```, затем ```Ctrl + X```:
 
-**== Task ==**
+![part_7_7](screenshots/part_7_7.png)
+![part_7_8](screenshots/part_7_8.png)
 
-##### Run the df command.
-- In the report write for the root partition (/):
-    - partition size
-    - space used
-    - space free
-    - percentage used
-- Determine and write the measurement unit in the report.
+- Поиск: ```Ctrl + W``` 
 
-##### Run the df -Th command.
-- In the report write for the root partition (/):
-    - partition size
-    - space used
-    - space free
-    - percentage used
-- Determine and write the file system type for the partition in the report.
+![part_7_9](screenshots/part_7_9.png)
 
-## Part 12. Using the **du** utility
+- Замена: ```Ctrl + \```
 
-"df is not the only way to get information about disk space. I'll tell you about another one."
+![part_7_10](screenshots/part_7_10.png)
+![part_7_11](screenshots/part_7_11.png)
+![part_7_12](screenshots/part_7_12.png)
 
-**== Task ==**
 
-##### Run the du command.
-##### Output the size of the /home, /var, /var/log folders (in bytes, in human readable format)
-##### Output the size of all contents in /var/log (not the total, but each nested element using *)
-- Add screenshots with the output of all used commands to the report.
+### MCEdit
 
-## Part 13. Installing and using the **ncdu** utility
 
-"You probably didn’t like much the format in which the du command outputs information. I understand you perfectly. So now we'll take a look at its improved version."
+- Для выхода с сохранением необходимо нажать ```F10``` и выбрать ```yes```:
+![part_7_13](screenshots/part_7_13.png)
 
-**== Task ==**
 
-##### Install the ncdu utility.
-##### Output the size of the /home, /var, /var/log folders.
-- The size should be approximately the same as in [Part 12](#part-12-using-the-du-utility);
+- Для выхода с сохранением необходимо нажать ```F10``` и выбрать ```no```:
 
-- Add screenshots of the used commands to the report.
+![part_7_14](screenshots/part_7_14.png)
+![part_7_15](screenshots/part_7_15.png)
 
-## Part 14. Working with system logs
 
-"A system administrator sometimes needs to review events which happened in a system in the recent past. Linux has system logs for that."
 
-**== Task ==**
+- Поиск: ```F7```; Замена: ```F4```
 
-##### Open for viewing:
+![part_7_16](screenshots/part_7_16.png)
+![part_7_17](screenshots/part_7_17.png)
+![part_7_18](screenshots/part_7_18.png)
+![part_7_19](screenshots/part_7_19.png)
+
+
+
+
+## Part 8. Установка и базовая настройка сервиса SSHD
+
+
+---
+
+**== Задание ==**
+
+##### Установи службу SSHd.  
+##### Добавь автостарт службы при загрузке системы.  
+##### Перенастрой службу SSHd на порт 2022.  
+##### Используя команду ps, покажи наличие процесса sshd. Для этого к команде нужно подобрать ключи.
+- В отчёте объясни значение команды и каждого ключа в ней.
+##### Перезагрузи систему.
+- В отчёте опиши, что сделал для выполнения всех пяти пунктов (можно как текстом, так и скриншотами).
+- Вывод команды netstat -tan должен содержать  \
+`tcp 0 0 0.0.0.0:2022 0.0.0.0:* LISTEN`  \
+(если команды netstat нет, то ее нужно установить)
+- Скрин с выводом команды вставь в отчёт.
+- В отчёте объясни значение ключей -tan, значение каждого столбца вывода, значение 0.0.0.0.
+
+---
+
+
+
+
+- Служба ```sshd``` отвечает за обработку входящих подключений к серверу по VPN. Для её установки выполним команду ```sudo apt install openssh-server```. Для добавления в автозагрузку пропишем ```sudo systemctl enable ssh```. Проверим статус службы командой ```systemctl status ssh```:
+
+![part_8_1](screenshots/part_8_1.png)
+
+- Для перенастройки службы SSHd откроем файл sshd_config командой ```sudo vim /etc/ssh/sshd_config```. По умолчанию порт будет задан 22, изменим его на 2022:
+
+![part_8_2](screenshots/part_8_2.png)
+![part_8_3](screenshots/part_8_3.png)
+
+- Используя команду ```ps```, покажем наличие процесса ```sshd```. ```ax``` – будут показаны все процессы подробно. ```u``` — выводит пользователя и еще доп информацию. ```grep sshd``` выводит только те строчки, где есть ```sshd```:
+
+![part_8_4](screenshots/part_8_4.png)
+
+- Пропишем ```reboot```, а затем ```netstat -tan```:
+
+
+![part_8_5](screenshots/part_8_5.png)
+
+
+----
+### Справка о netstat
+
+**netstat** (network statistics) — утилита командной строки, выводящая на дисплей состояние TCP-соединений (как входящих, так и исходящих), таблицы маршрутизации, число сетевых интерфейсов и сетевую статистику по протоколам.
+
+Для установки netstat выполним команду:
+```sudo apt install net-tools```
+
+Команда netstat показывает статистику приема и отправки пакетов, а также информацию об ошибках приема и отправки.
+-a - Вывод всех активных подключений TCP и прослушиваемых компьютером портов TCP и UDP.
+-n - Вывод активных подключений TCP с отображением адресов и номеров портов в числовом формате без попыток определения имен.
+Тогда, если netstat -na - просмотр всех открытых протоколов, то netstat -tan - просмотр всех открытых ТСР-протоколов.
+
+----
+
+
+
+## Part 9. Установка и использование утилит top, htop
+
+
+---
+
+**== Задание ==**
+
+##### Установи и запусти утилиты top и htop.  
+
+- По выводу команды top определи и напиши в отчёте:
+  - uptime
+  - количество авторизованных пользователей
+  - общую загрузку системы
+  - общее количество процессов
+  - загрузку cpu
+  - загрузку памяти
+  - pid процесса занимающего больше всего памяти
+  - pid процесса, занимающего больше всего процессорного времени
+- В отчёт вставь скрин с выводом команды htop:
+  - отсортированному по PID, PERCENT_CPU, PERCENT_MEM, TIME
+  - отфильтрованному для процесса sshd
+  - с процессом syslog, найденным, используя поиск 
+  - с добавленным выводом hostname, clock и uptime  
+
+---
+
+
+
+- утилиты ```top``` и ```htop``` предназначены для управления процессами, запущенными на устройстве. 
+
+
+### top
+
+
+![part_9_1](screenshots/part_9_1.png)
+
+---
+
+Колонки, которые выводит программа очень похожи на ps:
+
+- **PID** - идентификатор процесса;
+- **USER** - имя пользователя, от имени которого выполняется процесс;
+- **PR** - приоритет планировщика, установленный для процесса;
+- **NI** - рекомендуемый приоритет процесса. Это значение можно менять, может не совпадать с реальным приоритетом планировщика;
+- **VIRT** - всё, что находится в памяти, используется или зарезервировано для использования;
+- **RES** - всё, что находится в оперативной памяти и относится к процессу. Расшифровывается как Resident Memory Size, указывается в килобайтах;
+- **SHR** - часть памяти из RES, которую занимают ресурсы, доступные для использования другим процессам. Расшифровывается - Shared Memory Size.
+- **S** - состояние процесса: D - ожидает завершения операции, R - запущен, S - спит, T - остановлен, t - остановлен отладчиком, Z - зомби;
+- **%CPU** - процент использования ресурсов процессора;
+- **%MEM** - процент использования ресурсов оперативной памяти на основе колонки RES;
+- **TIME** - обще процессорное время, которое процесс использовал с момента запуска;
+- **COMAND** - команда, с помощью которой был запущен процесс.
+
+---
+
+
+- uptime - 19 мин
+- количество авторизованных пользователей - 1
+- общую загрузку системы - 0
+- общее количество процессов - 99
+- загрузка cpu - 0%
+- загрузку памяти - 171.4 из 1964.1
+- pid процесса занимающего больше всего памяти - 1
+- pid процесса, занимающего больше всего процессорного времени - 1042
+
+
+
+### htop
+- htop сортируется следующим образом: ```htop --sort-key PID```
+
+- сортировка по ```PID```:
+
+![part_9_2](screenshots/part_9_2.png)
+
+- сортировка по ```PERCENT_CPU```:
+
+![part_9_3](screenshots/part_9_3.png)
+
+
+- сортировка по ```PERCENT_MEM```:
+
+![part_9_4](screenshots/part_9_4.png)
+
+
+- сортировка по ```TIME```:
+
+![part_9_5](screenshots/part_9_5.png)
+
+
+
+- фильтрация для процесса ```sshd```:
+
+![part_9_6](screenshots/part_9_6.png)
+
+
+- вывод с процессом ```syslog```, найденным с помощью поиска:
+
+![part_9_7](screenshots/part_9_7.png)
+
+
+- вывод с добавленными ```hostname```, ```clock``` и ```uptime```
+
+![part_9_8](screenshots/part_9_8.png)
+
+
+
+
+## Part 10. Использование утилиты fdisk
+
+---
+
+**== Задание ==**
+
+##### Запусти команду fdisk -l.
+
+- В отчёте напиши название жесткого диска, его размер и количество секторов, а также размер swap.
+
+---
+
+
+
+- пропишем ```fdisk -l```:
+
+![part_10](screenshots/part_10.png)
+
+
+> Название диска: VBOX HARDDISK  
+> Размер диска: 15.34 Гигабайт  
+> Количество секторов: 32159840  
+> Размер swap:  512 байт
+
+
+## Part 11. Использование утилиты df
+
+---
+
+**== Задание ==**
+
+##### Запусти команду df.  
+- В отчёте напиши для корневого раздела (/):
+  - размер раздела
+  - размер занятого пространства
+  - размер свободного пространства
+  - процент использования
+- Определи и напиши в отчёт единицу измерения в выводе.  
+
+##### Запусти команду df -Th.
+- В отчёте напиши для корневого раздела (/):
+    - размер раздела
+    - размер занятого пространства
+    - размер свободного пространства
+    - процент использования
+- Определи и напиши в отчёт тип файловой системы для раздела.
+
+---
+
+### Справка об утилите df
+
+**df** -  утилита в UNIX и UNIX-подобных системах, показывает список всех файловых систем по именам устройств, сообщает их размер, занятое и свободное пространство и точки монтирования.  
+
+Основные опции утилиты:
+
+- ```-a```, ```--all``` - отобразить все файловые системы, в том числе виртуальные, псевдо и недоступные;
+- ```-B``` - изменить размер одного блока перед выводом данных, например, можно использовать BM, чтобы вывести все данные в мегабайтах;
+- ```-h``` - выводить размеры в читаемом виде, в мегабайтах или гигабайтах;
+- ```-H``` - выводить все размеры в гигабайтах;
+- ```-i``` - выводить информацию об inode;
+- ```-k``` - выводить размеры в килобайтах;
+- ```--output``` - использовать специальный формат вывода, если не задано, выводит все поля. Доступны такие варианты: 'source', 'fstype', 'itotal', 'iused', 'iavail', 'ipcent', 'size', 'used', 'avail', 'pcent', 'file' и 'target';
+- ```-P``` - использовать формат вывода POSIX;
+- ```--total``` - выводить всю информацию про использованное и доступное место;
+- ```-t```, ```--type``` - выводить информацию только про указанные файловые системы;
+- ```-x``` - выводить информацию обо всех, кроме указанных файловых систем;
+
+---
+
+- вывод ```df```:
+
+![part_11_1](screenshots/part_11_1.png)
+
+для корневого раздела (/):
+- размер раздела - 10218772
+- размер занятого пространства - 5022600
+- размер свободного пространства - 4655500
+- процент использования - 52%
+- единица измерения - Килобайт
+
+
+- вывод ```df -Th```:
+
+![part_11_2](screenshots/part_11_2.png)
+
+
+для корневого раздела (/):
+- размер раздела - 9.8
+- размер занятого пространства - 4.8
+- размер свободного пространства - 4.5
+- процент использования - 52%
+- единица измерения - Гигабайт
+
+
+
+## Part 12. Использование утилиты du
+
+---
+
+**== Задание ==**
+
+##### Запусти команду du
+##### Выведи размер папок /home, /var, /var/log (в байтах, в человекочитаемом виде)
+##### Выведи размер всего содержимого в /var/log (не общее, а каждого вложенного элемента, используя *)
+
+- В отчёт вставь скрины с выводом всех использованных команд.
+
+---
+
+
+
+**du** (аббревиатура от англ. disk usage) — стандартная Unix-программа для оценки занимаемого файлового пространства. 
+
+
+- вывод команды ```du```:
+
+![part_12_1](screenshots/part_12_1.png)
+
+
+- размер папок ```/home```, ```/var```, ```/var/log``` (в байтах, в человекочитаемом виде):
+
+![part_12_2](screenshots/part_12_2.png)
+
+- размер всего содержимого в ```/var/log``` (не общее, а каждого вложенного элемента, используя *):
+
+![part_12_3](screenshots/part_12_3.png)
+![part_12_4](screenshots/part_12_4.png)
+
+
+## Part 13. Установка и использование утилиты ncdu
+
+---
+
+**== Задание ==**
+
+##### Установи утилиту ncdu
+##### Выведи размер папок /home, /var, /var/log
+
+- Размеры должны примерно совпадать с полученными в [Part 12](#part-12-использование-утилиты-du).
+
+- В отчёт вставь скрины с выводом использованных команд.
+
+---
+
+
+
+
+**Ncdu (NCurses Disk Usage)** является инструментом командной строки для просмотра и анализа использования дискового пространства на Linux. Он может показать древовидные каталоги и дать отчет о свободном  пространстве на HDD, используемого в отдельных каталогах. Таким образом, очень легко отследить сколько занимает места файлы / каталоги. 
+
+
+- ```ncdu /home```:
+
+![part_13_1](screenshots/part_13_1.png)
+
+
+- ```ncdu /var```:
+
+![part_13_2](screenshots/part_13_2.png)
+
+
+- ```ncdu /var/log```:
+
+![part_13_3](screenshots/part_13_3.png)
+
+
+
+## Part 14. Работа с системными журналами
+
+
+---
+
+**== Задание ==**
+
+##### Открой для просмотра:
 ##### 1. /var/log/dmesg
 ##### 2. /var/log/syslog
-##### 3. /var/log/auth.log
-- Write the last successful login time, user name and login method in the report;
-- Restart SSHd service;
-- Add a screenshot of the service restart message to the report (search for it in the logs).
+##### 3. /var/log/auth.log  
 
-## Part 15. Using the **CRON** job scheduler
+- Напиши в отчёте время последней успешной авторизации, имя пользователя и метод входа в систему;
+- Перезапусти службу SSHd;
+- Вставь в отчёт скрин с сообщением о рестарте службы (искать в логах).
 
-"Phew, we finally got to the last part of my long narrative. I will now show you the program, which, among other things, noticeably simplifies the periodic invocation of other programs."
-
-**== Task ==**
-
-##### Using the job scheduler, run the uptime command in every 2 minutes.
-- Find lines in the system logs (at least two within a given time range) about the execution;
-- Display a list of current jobs for CRON;
-- Add screenshots of the execution lines and the list of current tasks to the report.
-
-##### Remove all tasks from the job scheduler.
-- Add a screenshot of the list of current tasks for CRON to the report.
+---
 
 
-💡 [Tap here](https://forms.yandex.ru/cloud/641817c002848f26a078c4a6/) **to leave your feedback on the project**. Product Team really tries to make your educational experience better.
+- ```/var/log/dmesg``` — драйвера устройств. Одноименной командой можно просмотреть вывод содержимого файла. Размер журнала ограничен, когда файл достигнет своего предела, старые сообщения будут перезаписаны более новыми.
+
+![part_14_1](screenshots/part_14_1.png)
+
+
+- ```/var/log/syslog``` — глобальный системный журнал, в котором пишутся сообщения с момента запуска системы, от ядра Linux, различных служб, обнаруженных устройствах, сетевых интерфейсов и много другого.
+
+![part_14_2](screenshots/part_14_2.png)
+
+
+- ```/var/log/auth.log``` — информация об авторизации пользователей, включая удачные и неудачные попытки входа в систему, а также задействованные механизмы аутентификации.
+
+![part_14_3](screenshots/part_14_3.png)
+
+Активацию sudo не будем считать за авторизацию. Тогда:  
+
+> Последняя успешная авторизация: Jan 31 17:00:16  
+> Имя пользователя: neuron  
+> Метод входа в систему: by uid = 0 (User Identifier). Суперпользователь всегда должен иметь UID, равный нулю (0).
+
+
+- перезапустим службу sshd ```systemctl restart sshd``` и увидим это в логах:
+
+![part_14_4](screenshots/part_14_4.png)
+
+
+## Part 15. Использование планировщика заданий CRON
+
+---
+
+**== Задание ==**
+
+##### Используя планировщик заданий, запусти команду uptime через каждые 2 минуты.
+- Найди в системных журналах строчки (минимум две в заданном временном диапазоне) о выполнении;
+- Выведи на экран список текущих заданий для CRON;
+- Вставь в отчёт скрины со строчками о выполнении и списком текущих задач.
+
+##### Удали все задания из планировщика заданий.
+- В отчёт вставь скрин со списком текущих заданий для CRON.
+
+---
+
+
+
+
+```Cron``` - это сервис, как и большинство других сервисов Linux, он запускается при старте системы и работает в фоновом режиме. Его основная задача выполнять нужные процессы в нужное время. Существует несколько конфигурационных файлов, из которых он берет информацию о том что и когда нужно выполнять. Сервис открывает файл /etc/crontab, в котором указаны все нужные данные. 
+
+
+- команда ```crontab -e``` открывает временный файл, в котором уже представлены все текущие задания cron (можно добавить новые) для текущего пользователя.  
+
+![part_15_1](screenshots/part_15_1.png)
+
+
+- команда ```crontab -l``` выводит список текущих заданий cron:
+
+![part_15_3](screenshots/part_15_3.png)
+
+- пронаблюдаем в логах uptime каждые 2 минуты:
+
+![part_15_2](screenshots/part_15_2.png)
+
+
+- удалим все задания из планировщика заданий:
+
+![part_15_4](screenshots/part_15_4.png)
+
+
