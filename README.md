@@ -39,7 +39,7 @@
 
  ---
 
-Скачать iso-образ Ubuntu Server можно на их официальном сайте [официальном сайте](https://ubuntu.com/download/server).
+Скачать iso-образ Ubuntu Server можно на их [официальном сайте](https://ubuntu.com/download/server).
 
 
 - скриншот вывода ```cat /etc/issue```
